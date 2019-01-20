@@ -1,0 +1,97 @@
+{
+  "name": "promised-array",
+  "version": "0.0.1",
+  "description": "Array combined with Promise, chainable, asynchronous methods and callbacks ready for async/await.",
+  "author": {
+    "name": "Ferdinand Prantl",
+    "email": "prantlf@gmail.com",
+    "url": "http://prantl.tk"
+  },
+  "license": "MIT",
+  "licenses": [
+    {
+      "type": "MIT",
+      "url": "https://github.com/prantlf/timezone-support/blob/master/LICENSE"
+    }
+  ],
+  "homepage": "https://github.com/prantlf/timezone-support#readme",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/prantlf/timezone-support.git"
+  },
+  "bugs": {
+    "url": "https://github.com/prantlf/timezone-support/issues"
+  },
+  "engines": {
+    "node": ">=8"
+  },
+  "main": "dist/index.js",
+  "typings": "dist/index.d.ts",
+  "files": [
+    "dist",
+    "src"
+  ],
+  "scripts": {
+    "prepare": "npm run build",
+    "lint:js": "standard --verbose --fix src/*.mjs test/*.mjs test/*.js *.js",
+    "lint:ts": "tslint -t stylish src/*.ts test/*.ts",
+    "lint": "npm run lint:js && npm run lint:ts",
+    "compile": "rollup -c",
+    "copy:typings": "cpy 'src/*.d.ts' dist",
+    "build": "npm run lint && npm run compile && npm run copy:typings",
+    "compile:test": "tsc --lib es6 test/test-typings.ts",
+    "check": "nyc node_modules/mocha/bin/mocha -r @std/esm test/*.mjs test/*.js",
+    "test": "npm run lint && npm run compile:test && npm run check",
+    "coverage": "test `node --version | cut -c 2,3` -eq 10 && nyc report --reporter=text-lcov | coveralls"
+  },
+  "standard": {
+    "ignore": [
+      "test/test-typings.js"
+    ]
+  },
+  "nyc": {
+    "check-coverage": true,
+    "lines": 100,
+    "statements": 100,
+    "functions": 100,
+    "branches": 100,
+    "extension": [
+      ".mjs"
+    ],
+    "include": [
+      "src/*.mjs"
+    ],
+    "exclude": [
+      "test/*.mjs"
+    ],
+    "reporter": [
+      "lcov",
+      "text"
+    ],
+    "cache": true,
+    "all": true
+  },
+  "devDependencies": {
+    "@babel/core": "7.2.2",
+    "@babel/preset-env": "7.2.3",
+    "@std/esm": "0.26.0",
+    "chai": "4.2.0",
+    "cpy-cli": "2.0.0",
+    "mocha": "5.2.0",
+    "nyc": "13.1.0",
+    "rollup": "1.1.1",
+    "rollup-plugin-babel": "4.3.2",
+    "rollup-plugin-clean": "1.0.0",
+    "rollup-plugin-uglify": "6.0.1",
+    "standard": "12.0.1",
+    "tslint": "5.12.1",
+    "tslint-config-standard": "8.0.1",
+    "typescript": "3.2.4"
+  },
+  "dependencies": {},
+  "keywords": [
+    "array",
+    "asynchronous",
+    "promise"
+  ]
+}

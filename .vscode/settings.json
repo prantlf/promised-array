@@ -1,0 +1,10 @@
+{
+  "files.exclude": {
+    "**/.nyc_output": true,
+    "**/coverage": true,
+  },
+  "search.exclude": {
+    "**/dist": true,
+    "**/test/test-typings.js": true
+  }
+}
