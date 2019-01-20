@@ -43,6 +43,7 @@
     "check": "nyc node_modules/mocha/bin/mocha -r @std/esm test/*.mjs test/*.js",
     "test": "npm run lint && npm run compile:test && npm run check",
     "coverage": "test `node --version | cut -c 2,3` -eq 10 && nyc report --reporter=text-lcov | coveralls",
+    "travis-deploy-once": "travis-deploy-once",
     "semantic-release": "semantic-release"
   },
   "standard": {
