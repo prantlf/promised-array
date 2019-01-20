@@ -42,7 +42,8 @@
     "compile:test": "tsc --lib es6 test/test-typings.ts",
     "check": "nyc node_modules/mocha/bin/mocha -r @std/esm test/*.mjs test/*.js",
     "test": "npm run lint && npm run compile:test && npm run check",
-    "coverage": "test `node --version | cut -c 2,3` -eq 10 && nyc report --reporter=text-lcov | coveralls"
+    "coverage": "test `node --version | cut -c 2,3` -eq 10 && nyc report --reporter=text-lcov | coveralls",
+    "semantic-release": "semantic-release"
   },
   "standard": {
     "ignore": [
@@ -84,7 +85,9 @@
     "rollup-plugin-babel": "4.3.2",
     "rollup-plugin-clean": "1.0.0",
     "rollup-plugin-uglify": "6.0.1",
+    "semantic-release": "^15.13.3",
     "standard": "12.0.1",
+    "travis-deploy-once": "5.0.11",
     "tslint": "5.12.1",
     "tslint-config-standard": "8.0.1",
     "typescript": "3.2.4"
