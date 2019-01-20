@@ -1,0 +1,14 @@
+.DS_Store
+.babelrc
+.coveralls.yml
+.editorconfig
+.eslintrc.yml
+.gitignore
+.npmignore
+.nyc_output
+.travis.yml
+.vscode
+coverage
+rollup.config.js
+test
+tslint.yml
