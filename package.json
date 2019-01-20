@@ -1,6 +1,6 @@
 {
   "name": "promised-array",
-  "version": "0.0.1",
+  "version": "0.0.0-development",
   "description": "Array combined with Promise, chainable, asynchronous methods and callbacks ready for async/await.",
   "author": {
     "name": "Ferdinand Prantl",
@@ -11,16 +11,16 @@
   "licenses": [
     {
       "type": "MIT",
-      "url": "https://github.com/prantlf/timezone-support/blob/master/LICENSE"
+      "url": "https://github.com/prantlf/promised-array/blob/master/LICENSE"
     }
   ],
-  "homepage": "https://github.com/prantlf/timezone-support#readme",
+  "homepage": "https://github.com/prantlf/promised-array#readme",
   "repository": {
     "type": "git",
-    "url": "https://github.com/prantlf/timezone-support.git"
+    "url": "https://github.com/prantlf/promised-array.git"
   },
   "bugs": {
-    "url": "https://github.com/prantlf/timezone-support/issues"
+    "url": "https://github.com/prantlf/promised-array/issues"
   },
   "engines": {
     "node": ">=8"
