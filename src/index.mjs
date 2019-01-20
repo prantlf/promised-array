@@ -138,8 +138,13 @@ chainableMethods.forEach(function (name) {
 // do not need asychronous support for their parameters and have to
 // be at the end of the chain of PromisedArray method calls.
 const terminalMethods = [
-  'entries', 'includes', 'indexOf', 'lastIndexOf', 'join', 'keys', 'pop', 'push', 'shift', 'unshift', 'values'
+  'entries', 'includes', 'indexOf', 'lastIndexOf', 'join', 'keys', 'pop', 'push', 'shift', 'unshift'
 ]
+const version = /^v(\d+)/.exec(process.version)
+/* istanbul ignore next */
+if (+version[1] >= 10) {
+  terminalMethods.push('values')
+}
 
 terminalMethods.forEach(function (name) {
   const method = arrayPrototype[name]

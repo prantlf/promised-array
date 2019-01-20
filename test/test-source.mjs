@@ -557,8 +557,12 @@ describe('PromisedArray\'s lookup instance method', () => {
 
 describe('PromisedArray\'s terminal immutable instance method expecting no callback', () => {
   const methods = [
-    'entries', 'join', 'keys', 'values'
+    'entries', 'join', 'keys'
   ]
+  const version = /^v(\d+)/.exec(process.version)
+  if (+version[1] >= 10) {
+    methods.push('values')
+  }
 
   let array
   let promisedArray
