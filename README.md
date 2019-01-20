@@ -3,7 +3,7 @@
 [![NPM version](https://badge.fury.io/js/promised-array.png)](http://badge.fury.io/js/promised-array)
 [![Build Status](https://travis-ci.org/prantlf/promised-array.png)](https://travis-ci.org/prantlf/promised-array)
 [![Coverage Status](https://coveralls.io/repos/github/prantlf/promised-array/badge.svg?branch=master)](https://coveralls.io/github/prantlf/promised-array?branch=master)
-[![Codacy Badge](https://api.codacy.com/project/badge/Grade/9f1034029c0747a980cd49f64f16338b)](https://www.codacy.com/app/prantlf/promised-array?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=prantlf/promised-array&amp;utm_campaign=Badge_Grade)
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/a93e689283b447bfb8684f957f32ba50)](https://www.codacy.com/app/prantlf/promised-array?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=prantlf/promised-array&amp;utm_campaign=Badge_Grade)
 [![devDependency Status](https://david-dm.org/prantlf/promised-array/dev-status.svg)](https://david-dm.org/prantlf/promised-array#info=devDependencies)
 [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
 
