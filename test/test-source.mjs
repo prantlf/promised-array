@@ -455,18 +455,20 @@ describe('PromisedArray\'s chainable immutable instance method expecting no call
   })
 
   for (const method of methods) {
-    describe(method, () => {
-      it('returns a promised array', () => {
-        const promise = promisedArray[method](() => {})
-        expect(promise).to.be.instanceOf(Promise)
-        expect(promise.map).to.be.a('function')
-      })
+    if (Array.prototype[method]) {
+      describe(method, () => {
+        it('returns a promised array', () => {
+          const promise = promisedArray[method](() => {})
+          expect(promise).to.be.instanceOf(Promise)
+          expect(promise.map).to.be.a('function')
+        })
 
-      it('returns the same as the original method', async () => {
-        const promise = promisedArray[method](3)
-        expect(await promise).to.deep.equal(array[method](3))
+        it('returns the same as the original method', async () => {
+          const promise = promisedArray[method](3)
+          expect(await promise).to.deep.equal(array[method](3))
+        })
       })
-    })
+    }
   }
 })
 
@@ -484,18 +486,20 @@ describe('PromisedArray\'s chainable mutable instance method expecting no callba
   })
 
   for (const method of methods) {
-    describe(method, () => {
-      it('returns a promised array', () => {
-        const promise = promisedArray[method](() => {})
-        expect(promise).to.be.instanceOf(Promise)
-        expect(promise.map).to.be.a('function')
-      })
+    if (Array.prototype[method]) {
+      describe(method, () => {
+        it('returns a promised array', () => {
+          const promise = promisedArray[method](() => {})
+          expect(promise).to.be.instanceOf(Promise)
+          expect(promise.map).to.be.a('function')
+        })
 
-      it('returns the same as the original method', async () => {
-        const promise = promisedArray[method](0, 1, 2)
-        expect(await promise).to.deep.equal(array[method](0, 1, 2))
+        it('returns the same as the original method', async () => {
+          const promise = promisedArray[method](0, 1, 2)
+          expect(await promise).to.deep.equal(array[method](0, 1, 2))
+        })
       })
-    })
+    }
   }
 })
 
@@ -536,33 +540,31 @@ describe('PromisedArray\'s lookup instance method', () => {
   })
 
   for (const method of methods) {
-    describe(method, () => {
-      it('returns a promise', () => {
-        const promise = promisedArray[method](() => {})
-        expect(promise).to.be.instanceOf(Promise)
-      })
+    if (Array.prototype[method]) {
+      describe(method, () => {
+        it('returns a promise', () => {
+          const promise = promisedArray[method](() => {})
+          expect(promise).to.be.instanceOf(Promise)
+        })
 
-      it('returns the same as the original method for a matching item', async () => {
-        const promise = promisedArray[method](1)
-        expect(await promise).to.deep.equal(array[method](1))
-      })
+        it('returns the same as the original method for a matching item', async () => {
+          const promise = promisedArray[method](1)
+          expect(await promise).to.deep.equal(array[method](1))
+        })
 
-      it('returns the same  as the original method for a non-matching item', async () => {
-        const promise = promisedArray[method](0)
-        expect(await promise).to.deep.equal(array[method](0))
+        it('returns the same  as the original method for a non-matching item', async () => {
+          const promise = promisedArray[method](0)
+          expect(await promise).to.deep.equal(array[method](0))
+        })
       })
-    })
+    }
   }
 })
 
 describe('PromisedArray\'s terminal immutable instance method expecting no callback', () => {
   const methods = [
-    'entries', 'join', 'keys'
+    'entries', 'join', 'keys', 'values'
   ]
-  const version = /^v(\d+)/.exec(process.version)
-  if (+version[1] >= 10) {
-    methods.push('values')
-  }
 
   let array
   let promisedArray
@@ -573,17 +575,19 @@ describe('PromisedArray\'s terminal immutable instance method expecting no callb
   })
 
   for (const method of methods) {
-    describe(method, () => {
-      it('returns a promise', () => {
-        const promise = promisedArray[method](() => {})
-        expect(promise).to.be.instanceOf(Promise)
-      })
+    if (Array.prototype[method]) {
+      describe(method, () => {
+        it('returns a promise', () => {
+          const promise = promisedArray[method](() => {})
+          expect(promise).to.be.instanceOf(Promise)
+        })
 
-      it('returns the same as the original method', async () => {
-        const promise = promisedArray[method](3)
-        expect(await promise).to.deep.equal(array[method](3))
+        it('returns the same as the original method', async () => {
+          const promise = promisedArray[method](3)
+          expect(await promise).to.deep.equal(array[method](3))
+        })
       })
-    })
+    }
   }
 })
 
@@ -601,17 +605,19 @@ describe('PromisedArray\'s mutable terminal instance method expecting no callbac
   })
 
   for (const method of methods) {
-    describe(method, () => {
-      it('returns a promise', () => {
-        const promise = promisedArray[method](() => {})
-        expect(promise).to.be.instanceOf(Promise)
-      })
+    if (Array.prototype[method]) {
+      describe(method, () => {
+        it('returns a promise', () => {
+          const promise = promisedArray[method](() => {})
+          expect(promise).to.be.instanceOf(Promise)
+        })
 
-      it('returns the same as the original method', async () => {
-        const promise = promisedArray[method](3)
-        expect(await promise).to.deep.equal(array[method](3))
+        it('returns the same as the original method', async () => {
+          const promise = promisedArray[method](3)
+          expect(await promise).to.deep.equal(array[method](3))
+        })
       })
-    })
+    }
   }
 })
 

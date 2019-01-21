@@ -125,12 +125,15 @@ const chainableMethods = [
 
 chainableMethods.forEach(function (name) {
   const method = arrayPrototype[name]
-  promisedArrayPrototype[name] = function () {
-    const parameters = arguments
-    const promise = this.then(function (array) {
-      return method.apply(array, parameters)
-    })
-    return PromisedArray.fromPromise(promise)
+  /* istanbul ignore next */
+  if (method) {
+    promisedArrayPrototype[name] = function () {
+      const parameters = arguments
+      const promise = this.then(function (array) {
+        return method.apply(array, parameters)
+      })
+      return PromisedArray.fromPromise(promise)
+    }
   }
 })
 
@@ -138,21 +141,19 @@ chainableMethods.forEach(function (name) {
 // do not need asychronous support for their parameters and have to
 // be at the end of the chain of PromisedArray method calls.
 const terminalMethods = [
-  'entries', 'includes', 'indexOf', 'lastIndexOf', 'join', 'keys', 'pop', 'push', 'shift', 'unshift'
+  'entries', 'includes', 'indexOf', 'lastIndexOf', 'join', 'keys', 'pop', 'push', 'shift', 'unshift', 'values'
 ]
-const version = /^v(\d+)/.exec(process.version)
-/* istanbul ignore next */
-if (+version[1] >= 10) {
-  terminalMethods.push('values')
-}
 
 terminalMethods.forEach(function (name) {
   const method = arrayPrototype[name]
-  promisedArrayPrototype[name] = function () {
-    const parameters = arguments
-    return this.then(function (array) {
-      return method.apply(array, parameters)
-    })
+  /* istanbul ignore next */
+  if (method) {
+    promisedArrayPrototype[name] = function () {
+      const parameters = arguments
+      return this.then(function (array) {
+        return method.apply(array, parameters)
+      })
+    }
   }
 })
 
