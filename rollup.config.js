@@ -19,6 +19,9 @@ export default [
     output: {
       file: 'dist/index.umd.js',
       format: 'umd',
+      amd: {
+        id: 'promised-array'
+      },
       name: 'promisedArray',
       sourcemap: true
     },
