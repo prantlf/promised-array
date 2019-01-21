@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang='en'>
+<head>
+  <meta charset='utf-8'>
+  <title>PromisedArray Test for AMD Module</title>
+  <link rel='stylesheet' href='../node_modules/mocha/mocha.css' />
+</head>
+<body>
+  <!-- Required for browser reporter -->
+  <div id='mocha'></div>
+  <!-- Testing libraries -->
+  <script src='../node_modules/mocha/mocha.js'></script>
+  <script src='../node_modules/chai/chai.js'></script>
+  <!-- Module loader -->
+  <script src='../node_modules/requirejs/require.js'></script>
+  <!-- Load the built library -->
+  <script src='../dist/index.umd.js'></script>
+  <!-- Unit tests -->
+  <script>
+    mocha.setup('bdd')
+    window.expect = chai.expect
+
+    define('test', ['promised-array'], ({ PromisedArray }) => {
+      describe('PromisedArray as an AMD module', () => {
+        it('exports expected static class', () => {
+          expect(PromisedArray).to.be.an('function')
+          expect(PromisedArray.fromArray).to.be.a('function')
+        })
+      })
+    })
+
+    require.config({
+      baseUrl: '..',
+      // Point module names used by vendor libraries to actual
+      // file paths of these modules in this project.
+      paths: {
+        'promised-array': 'dist/index.umd'
+      },
+      // Load the test.
+      deps: ['test'],
+      // Execute unit tests, once they are loaded.
+      callback: () => {
+        mocha.checkLeaks()
+        mocha.globals(['__screenCapturePageContext__'])
+        mocha.run()
+      }
+    })
+  </script>
+</body>
+</html>

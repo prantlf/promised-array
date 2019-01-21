@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang='en'>
+<head>
+  <meta charset='utf-8'>
+  <title>PromisedArray Test for Plain Module</title>
+  <link rel='stylesheet' href='../node_modules/mocha/mocha.css' />
+</head>
+<body>
+  <!-- Required for browser reporter -->
+  <div id='mocha'></div>
+  <!-- Testing libraries -->
+  <script src='../node_modules/mocha/mocha.js'></script>
+  <script src='../node_modules/chai/chai.js'></script>
+  <!-- Unit tests -->
+  <script>
+    mocha.setup('bdd')
+    window.expect = chai.expect
+  </script>
+  <script type="module" src='../test/test-source.js'></script>
+  <script>
+    addEventListener('load', () => {
+      mocha.checkLeaks()
+      mocha.run()
+    })
+  </script>
+</body>
+</html>

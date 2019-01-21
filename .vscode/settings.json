@@ -5,6 +5,7 @@
   },
   "search.exclude": {
     "**/dist": true,
+    "**/test/test-source.js": true,
     "**/test/test-typings.js": true
   }
 }

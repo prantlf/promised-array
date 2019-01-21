@@ -40,7 +40,8 @@
     "copy:typings": "cpy 'src/*.d.ts' dist",
     "build": "npm run lint && npm run compile && npm run copy:typings",
     "compile:test": "tsc --lib es6 test/test-typings.ts",
-    "check": "nyc node_modules/mocha/bin/mocha -r @std/esm test/*.mjs test/*.js",
+    "browserify:test": "node util/browserify-test",
+    "check": "nyc node_modules/mocha/bin/mocha -r @std/esm test/test-source.mjs test/test-compiled.js test/test-typings.js",
     "test": "npm run lint && npm run compile:test && npm run check",
     "coverage": "test `node --version | cut -c 2,3` -eq 10 && nyc report --reporter=text-lcov | coveralls",
     "travis-deploy-once": "travis-deploy-once",
@@ -48,6 +49,7 @@
   },
   "standard": {
     "ignore": [
+      "test/test-source.js",
       "test/test-typings.js"
     ]
   },
@@ -78,15 +80,19 @@
     "@babel/preset-env": "7.2.3",
     "@std/esm": "0.26.0",
     "chai": "4.2.0",
+    "connect": "3.6.6",
+    "connect-block-favicon": "1.0.1",
     "coveralls": "3.0.2",
     "cpy-cli": "2.0.0",
     "mocha": "5.2.0",
     "nyc": "13.1.0",
+    "requirejs": "2.3.6",
     "rollup": "1.1.1",
     "rollup-plugin-babel": "4.3.2",
     "rollup-plugin-clean": "1.0.0",
     "rollup-plugin-uglify": "6.0.1",
     "semantic-release": "^15.13.3",
+    "serve-static": "1.13.2",
     "standard": "12.0.1",
     "travis-deploy-once": "5.0.11",
     "tslint": "5.12.1",
