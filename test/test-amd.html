@@ -41,7 +41,6 @@
       // Execute unit tests, once they are loaded.
       callback: () => {
         mocha.checkLeaks()
-        mocha.globals(['__screenCapturePageContext__'])
         mocha.run()
       }
     })
