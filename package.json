@@ -42,8 +42,10 @@
     "compile:test": "tsc --lib es6 test/test-typings.ts",
     "browserify:test": "node util/browserify-test",
     "check": "nyc node_modules/mocha/bin/mocha -r @std/esm test/test-source.mjs test/test-compiled.js test/test-typings.js",
+    "check:new": "node_modules/mocha/bin/mocha -r @std/esm test/test-source.mjs test/test-compiled.js test/test-typings.js",
     "test": "npm run lint && npm run compile:test && npm run check",
-    "coverage": "test `node --version | cut -c 2,3` -eq 10 && nyc report --reporter=text-lcov | coveralls"
+    "test:new": "npm run lint && npm run compile:test && npm run check:new",
+    "coverage": "nyc report --reporter=text-lcov | coveralls"
   },
   "standard": {
     "ignore": [
