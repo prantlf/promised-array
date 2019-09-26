@@ -55,7 +55,7 @@ describe('PromisedArray\'s class method', () => {
     let promisedArray
 
     before(() => {
-      promisedArray = PromisedArray.fromArray([ 1, 2 ])
+      promisedArray = PromisedArray.fromArray([1, 2])
     })
 
     it('returns a promised array', () => {
@@ -65,7 +65,7 @@ describe('PromisedArray\'s class method', () => {
 
     it('the promise resolves to the input array', async () => {
       const array = await promisedArray
-      expect(array).to.deep.equal([ 1, 2 ])
+      expect(array).to.deep.equal([1, 2])
     })
   })
 
@@ -73,7 +73,7 @@ describe('PromisedArray\'s class method', () => {
     let promisedArray
 
     before(() => {
-      promisedArray = PromisedArray.fromPromise(Promise.resolve([ 1, 2 ]))
+      promisedArray = PromisedArray.fromPromise(Promise.resolve([1, 2]))
     })
 
     it('returns a promised array', () => {
@@ -83,7 +83,7 @@ describe('PromisedArray\'s class method', () => {
 
     it('the promise resolves to the original promise\'s input', async () => {
       const array = await promisedArray
-      expect(array).to.deep.equal([ 1, 2 ])
+      expect(array).to.deep.equal([1, 2])
     })
   })
 
@@ -111,7 +111,7 @@ describe('PromisedArray\'s instance method expecting a callback', () => {
   let promisedArray
 
   before(() => {
-    array = [ 1, 2 ]
+    array = [1, 2]
     promisedArray = PromisedArray.fromArray(array)
   })
 
@@ -164,7 +164,7 @@ describe('PromisedArray\'s instance method expecting a callback', () => {
       describe('with a synchronous callback', () => {
         it('resolves to an array with items matching the condition', async () => {
           const result = await promisedArray['filter' + suffix](item => item > 1)
-          expect(result).to.deep.equal([ 2 ])
+          expect(result).to.deep.equal([2])
         })
       })
 
@@ -172,7 +172,7 @@ describe('PromisedArray\'s instance method expecting a callback', () => {
         it('resolves to an array with items matching the condition', async () => {
           const callback = makeAsynchronous(item => item > 1)
           const result = await promisedArray['filter' + suffix](callback)
-          expect(result).to.deep.equal([ 2 ])
+          expect(result).to.deep.equal([2])
         })
       })
     })
@@ -287,7 +287,7 @@ describe('PromisedArray\'s instance method expecting a callback', () => {
       describe('with a synchronous callback', () => {
         it('resolves to an array of items returned by the callback', async () => {
           const result = await promisedArray['map' + suffix](item => item + 1)
-          expect(result).to.deep.equal([ 2, 3 ])
+          expect(result).to.deep.equal([2, 3])
         })
       })
 
@@ -295,7 +295,7 @@ describe('PromisedArray\'s instance method expecting a callback', () => {
         it('resolves to an array of items returned by the callback', async () => {
           const callback = makeAsynchronous(item => item + 1)
           const result = await promisedArray['map' + suffix](callback)
-          expect(result).to.deep.equal([ 2, 3 ])
+          expect(result).to.deep.equal([2, 3])
         })
       })
     })
@@ -346,7 +346,7 @@ describe('PromisedArray\'s instance method expecting a callback', () => {
           it('resolves to the result returned by the last callback', async () => {
             const callback = (result, item) => result.concat(item)
             const result = await promisedArray['reduceRight' + suffix](callback, [])
-            expect(result).to.deep.equal([ 2, 1 ])
+            expect(result).to.deep.equal([2, 1])
           })
         })
 
@@ -354,7 +354,7 @@ describe('PromisedArray\'s instance method expecting a callback', () => {
           it('resolves to the result returned by the last callback', async () => {
             const callback = makeAsynchronous((result, item) => result.concat(item))
             const result = await promisedArray['reduceRight' + suffix](callback, [])
-            expect(result).to.deep.equal([ 2, 1 ])
+            expect(result).to.deep.equal([2, 1])
           })
         })
       })
@@ -374,30 +374,30 @@ describe('PromisedArray\'s instance method expecting a callback', () => {
 
       it('passes through values', async () => {
         const array = await promisedArray['resolve' + suffix]()
-        expect(array).to.deep.equal([ 1, 2 ])
+        expect(array).to.deep.equal([1, 2])
       })
 
       it('waits for promises', async () => {
         const array = await PromisedArray
-          .fromArray([ delayValue(1), delayValue(2) ]
+          .fromArray([delayValue(1), delayValue(2)]
           )['resolve' + suffix]()
-        expect(array).to.deep.equal([ 1, 2 ])
+        expect(array).to.deep.equal([1, 2])
       })
 
       it('works with a mixture of values and promises', async () => {
         const array = await PromisedArray
-          .fromArray([ 1, delayValue(2) ]
+          .fromArray([1, delayValue(2)]
           )['resolve' + suffix]()
-        expect(array).to.deep.equal([ 1, 2 ])
+        expect(array).to.deep.equal([1, 2])
       })
 
       it('does not modify the original array', async () => {
-        const array = [ delayValue(1) ]
+        const array = [delayValue(1)]
         const result = await PromisedArray
           .fromArray(array
           )['resolve' + suffix]()
         expect(array[0]).to.be.instanceOf(Promise)
-        expect(result).to.deep.equal([ 1 ])
+        expect(result).to.deep.equal([1])
       })
     })
 
@@ -455,7 +455,7 @@ describe('PromisedArray\'s chainable immutable instance method expecting no call
   let promisedArray
 
   before(() => {
-    array = [ 1, 2 ]
+    array = [1, 2]
     promisedArray = PromisedArray.fromArray(array)
   })
 
@@ -486,8 +486,8 @@ describe('PromisedArray\'s chainable mutable instance method expecting no callba
   let promisedArray
 
   beforeEach(() => {
-    array = [ 1, 2 ]
-    promisedArray = PromisedArray.fromArray([ 1, 2 ])
+    array = [1, 2]
+    promisedArray = PromisedArray.fromArray([1, 2])
   })
 
   for (const method of methods) {
@@ -513,8 +513,8 @@ describe('PromisedArray\'s chainable mutable instance method expecting synchrono
   let promisedArray
 
   beforeEach(() => {
-    array = [ 1, 2 ]
-    promisedArray = PromisedArray.fromArray([ 1, 2 ])
+    array = [1, 2]
+    promisedArray = PromisedArray.fromArray([1, 2])
   })
 
   describe('sort', () => {
@@ -540,7 +540,7 @@ describe('PromisedArray\'s lookup instance method', () => {
   let promisedArray
 
   before(() => {
-    array = [ 1, 2 ]
+    array = [1, 2]
     promisedArray = PromisedArray.fromArray(array)
   })
 
@@ -575,7 +575,7 @@ describe('PromisedArray\'s terminal immutable instance method expecting no callb
   let promisedArray
 
   before(() => {
-    array = [ 1, 2 ]
+    array = [1, 2]
     promisedArray = PromisedArray.fromArray(array)
   })
 
@@ -605,8 +605,8 @@ describe('PromisedArray\'s mutable terminal instance method expecting no callbac
   let promisedArray
 
   beforeEach(() => {
-    array = [ 1, 2 ]
-    promisedArray = PromisedArray.fromArray([ 1, 2 ])
+    array = [1, 2]
+    promisedArray = PromisedArray.fromArray([1, 2])
   })
 
   for (const method of methods) {
@@ -632,7 +632,7 @@ describe('PromisedArray\'s instance property', () => {
     let promisedArray
 
     before(() => {
-      array = [ 1, 2 ]
+      array = [1, 2]
       promisedArray = PromisedArray.fromArray(array)
     })
 
